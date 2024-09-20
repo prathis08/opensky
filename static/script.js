@@ -38,7 +38,7 @@ uploadButton.addEventListener("click", async () => {
 
   resultDiv.innerText += `Uploading ${filesToUpload.length} files\n`;
   try {
-    const response = await fetch("http://www.openskyresort.in/upload", {
+    const response = await fetch("https://www.openskyresort.in/upload", {
       method: "POST",
       body: formData,
     });
