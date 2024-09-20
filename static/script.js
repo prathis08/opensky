@@ -14,6 +14,12 @@ uploadArea.addEventListener("dragleave", () => {
   uploadArea.classList.remove("dragover");
 });
 
+fileInput.addEventListener("change", function (e) {
+  if (e.target.files.length == 1) {
+    resultDiv.innerText = `${e.target.files.length} file selected\n`;
+  } else resultDiv.innerText = `${e.target.files.length} files selected\n`;
+});
+
 uploadButton.addEventListener("click", async () => {
   const filesToUpload = fileInput.files;
 
@@ -32,7 +38,7 @@ uploadButton.addEventListener("click", async () => {
 
   resultDiv.innerText += `Uploading ${filesToUpload.length} files\n`;
   try {
-    const response = await fetch("http://127.0.0.1:80/upload", {
+    const response = await fetch("http://www.openskyresort.in/upload", {
       method: "POST",
       body: formData,
     });
@@ -46,6 +52,9 @@ uploadButton.addEventListener("click", async () => {
 
   loader.style.display = "none";
   resultDiv.innerText += `Total files uploaded: ${filesToUpload.length}`;
+  setTimeout(() => {
+    location.reload();
+  }, 2000);
   uploadButton.disabled = false;
 });
 
